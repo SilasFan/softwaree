@@ -1,9 +1,9 @@
 package com.softwaree.softwaree.backend.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.softwaree.softwaree.backend.entity.Order;
 import com.softwaree.softwaree.backend.mapper.OrderMapper;
 import com.softwaree.softwaree.backend.service.IOrderService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +18,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements IOrderService {
 
-    @Autowired
     private OrderMapper orderMapper;
-
 
 }

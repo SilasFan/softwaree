@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,6 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @since 2019-11-22
  */
 @ApiModel(value="Order对象", description="")
+@TableName("order")
 public class Order implements Serializable {
 
     private static final long serialVersionUID=1L;
