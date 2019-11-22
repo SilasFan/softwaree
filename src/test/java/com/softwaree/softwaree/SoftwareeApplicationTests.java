@@ -1,0 +1,13 @@
+package com.softwaree.softwaree;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SoftwareeApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

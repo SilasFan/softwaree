@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/rjgc3038?useUnicode=true&useSSL=false&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: rjgc
+    password: rjgc123
+    type: com.mysql.cj.jdbc.MysqlDataSource
+
+server:
+  port: 8080
