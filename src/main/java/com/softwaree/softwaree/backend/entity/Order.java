@@ -1,24 +1,29 @@
 package com.softwaree.softwaree.backend.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.time.LocalDateTime;
+
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author fetter
- * @since 2019-11-22
+ * @since 2019-11-29
  */
-@ApiModel(value="Order对象", description="")
-@TableName("order")
+@ApiModel(value = "Order", description = "订单类")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -50,6 +55,16 @@ public class Order implements Serializable {
     @TableField("produceProgress")
     private String produceProgress;
 
+    @TableField("customerID")
+    private Long customerID;
+
+    public Long getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(Long customerID) {
+        this.customerID = customerID;
+    }
 
     public Long getId() {
         return id;
