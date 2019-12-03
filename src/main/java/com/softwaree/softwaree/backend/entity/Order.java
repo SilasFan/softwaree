@@ -2,12 +2,15 @@ package com.softwaree.softwaree.backend.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 
+import java.io.ObjectInputStream;
 import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.softwaree.softwaree.backend.utils.OrderInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -24,11 +27,12 @@ import lombok.NoArgsConstructor;
 @ApiModel(value = "Order", description = "订单类")
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("orders")
 public class Order implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @TableId("ID")
+    @TableId("orderID")
     private Long id;
 
     @TableField("createTime")
@@ -141,15 +145,16 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-        "id=" + id +
-        ", createTime=" + createTime +
-        ", acceptTime=" + acceptTime +
-        ", tallyTime=" + tallyTime +
-        ", chipType=" + chipType +
-        ", chipAmount=" + chipAmount +
-        ", EDAFileLocation=" + EDAFileLocation +
-        ", attachedInfo=" + attachedInfo +
-        ", produceProgress=" + produceProgress +
-        "}";
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", acceptTime=" + acceptTime +
+                ", tallyTime=" + tallyTime +
+                ", chipType='" + chipType + '\'' +
+                ", chipAmount=" + chipAmount +
+                ", EDAFileLocation='" + EDAFileLocation + '\'' +
+                ", attachedInfo='" + attachedInfo + '\'' +
+                ", produceProgress='" + produceProgress + '\'' +
+                ", customerID=" + customerID +
+                '}';
     }
 }

@@ -7,7 +7,10 @@ import com.softwaree.softwaree.backend.service.impl.UserServiceImpl;
 import com.softwaree.softwaree.backend.utils.Response;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -20,10 +23,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/backend")
 public class UserController {
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
-    @Autowired
+    @Resource
     private UserServiceImpl userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -36,6 +39,12 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     private Response register(@RequestBody User user) {
         return userService.register(user);
+    }
+
+    @PreAuthorize("hasAuthority('USER')")
+    @RequestMapping(value = "/atest", method = RequestMethod.GET)
+    private String userTest() {
+        return "hello";
     }
 }
 
