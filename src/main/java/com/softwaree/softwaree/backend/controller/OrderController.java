@@ -7,7 +7,6 @@ import com.softwaree.softwaree.backend.utils.OrderInfo;
 import com.softwaree.softwaree.backend.utils.Response;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -76,7 +75,7 @@ public class OrderController {
     }
 
     @ApiOperation(value = "get all orders", httpMethod = "GET", notes = "获取所有历史订单，只有厂家才能用")
-    @RequestMapping("all")
+    @RequestMapping("/all")
     private Response getAll() {
         return orderService.allOrders();
     }

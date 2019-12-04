@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class Response {
-    private String message;
+    private Object message;
     private int OK;
 
     public Response(int ok) {
@@ -12,7 +12,7 @@ public class Response {
         this.OK = 1;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
@@ -24,7 +24,7 @@ public class Response {
         this.OK = OK;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Object message) {
         this.message = message;
     }
 }

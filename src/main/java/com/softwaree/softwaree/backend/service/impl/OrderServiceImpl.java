@@ -1,18 +1,17 @@
 package com.softwaree.softwaree.backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.softwaree.softwaree.backend.entity.Order;
 import com.softwaree.softwaree.backend.mapper.OrderMapper;
 import com.softwaree.softwaree.backend.service.IOrderService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.softwaree.softwaree.backend.utils.OrderInfo;
 import com.softwaree.softwaree.backend.utils.Response;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import springfox.documentation.spring.web.json.Json;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * <p>
@@ -62,7 +60,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setAcceptTime(null);
         order.setTallyTime(null);
         order.setCreateTime(LocalDateTime.now());
-        order.setId(3L);
+        order.setId(0L);
+        order.setProduceProgress(new OrderInfo().toString());
 
         // 这里的customerID需要前端自己用getCurrentID填写，因为类型不同就不查询了
         try {
@@ -97,7 +96,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                 return new Response("没有此订单！", 0);
             }
             order.setProduceProgress(orderInfo.toString());
-            this.updateById(order);
+            System.out.println(orderInfo.toString());
+            this.update(order, new UpdateWrapper<Order>().eq("orderID", order.getId()));
         } catch (Exception e) {
             return new Response("Server Error!", 0);
         }
@@ -126,7 +126,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             if (order == null) {
                 return new Response("订单不存在！", 0);
             }
-            return new Response(order.toString(), 1);
+            return new Response(order, 1);
         } catch (Exception e) {
             return new Response("Server Error!", 0);
         }
@@ -153,7 +153,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Response getOrderByUser(Long customerID) {
         try {
             List<Order> orders = this.list(new QueryWrapper<Order>().eq("customerID", customerID));
-            return new Response(orders.toString(), 1);
+            return new Response(orders, 1);
         } catch (Exception e) {
             return new Response("server error!", 0);
         }
@@ -162,7 +162,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Response allOrders() {
         try {
             List<Order> orders = this.list();
-            return new Response(orders.toString(), 1);
+            return new Response(orders, 1);
         } catch (Exception e) {
             return new Response("server error!", 0);
         }
